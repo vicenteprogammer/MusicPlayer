@@ -8,22 +8,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h4>Music Playlist</h4>
-    <img src="/img/pato.jpg" alt="opato">
-    <div id="below-cover">
-        <div id="info-song">
-            <div>Music name</div>
-            <div>Band name</div>
+    <div>
+
+        <h4 id="playlist-title">Music Playlist</h4>
+        <img id="cover" src="/img/pato.jpg" alt="opato">
+        <audio id="audio" src="/songs/o_pato.mp3"></audio>
+        <div id="below-cover">
+            <div id="info-song">
+                <div id="song-name">Music name</div>
+                <div id="band-name" class="light-color">Band name</div>
+            </div>
+            <button class="button light-color"><i class="bi bi-heart"></i></button>
         </div>
-        <div class="button"><i class="bi bi-heart"></i></div>
+        <div id="progress-bar">
+            <div id="current-progress"></div>
+        </div>
+        <div id="button-container">
+            <button id="shuffle" class="button" ><i class="bi bi-shuffle"></i></button>
+            <button id="previous" class="button button-navigate"><i class="bi bi-skip-start-fill"></i></button>
+            <button id="play" class="button button-biggest"><i class="bi bi-pause-circle-fill"></i></button>
+            <button id="next" class="button button-navigate"><i class="bi bi-skip-end-fill"></i></button>
+            <button id="repeat" class="button"><i class="bi bi-repeat"></i></button>
+        </div>
     </div>
-    <div>Progress bar</div>
-    <div id="button-container">
-        <div id="shuffle" class="button" ><i class="bi bi-shuffle"></i></div>
-        <div id="previous" class="button button-navigate"><i class="bi bi-skip-start-fill"></i></div>
-        <div id="play" class="button button-biggest"><i class="bi bi-pause-circle-fill"></i></div>
-        <div id="next" class="button button-navigate"><i class="bi bi-skip-end-fill"></i></div>
-        <div id="repeat" class="button"><i class="bi bi-repeat"></i></div>
-    </div>
-</body>
+    <script src="script.js"></script>
+    </body>
 </html>
