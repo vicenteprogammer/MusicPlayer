@@ -22,7 +22,7 @@ button{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 1.5em 0 3em 0;
+    margin: 1.5em 0 2em 0;
 }
 
 #button-container{
@@ -44,14 +44,14 @@ button{
 }
 
 #cover{
-    width: 450px;
+    width: 400px;
 }
 
 #playlist-title{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 1em 0 3em 0;
+    margin: 1.7em 0 3em 0;
 }
 
 #song-name{

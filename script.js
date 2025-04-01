@@ -1,8 +1,31 @@
 const songName = document.getElementById("song-name");
+const bandName = document.getElementById("band-name");
+const cover = document.getElementById("cover");
 const song = document.getElementById("audio");
 const play = document.getElementById("play")
+const previous = document.getElementById("previous");
+const next = document.getElementById("next");
 
-songName.innerText = "O Pato";
+const oPato = {
+    songName : "O Pato",
+    artist: "João Gilberto",
+    file: "o_pato"
+};
+
+const sixDays = {
+    songName : "Six Days",
+    artist : "DJ Shadow",
+    file: "six_days"
+};
+
+const sunflower = {
+    songName : "Sunflower",
+    artist : "Post Malone",
+    file : "sunflower"
+};
+const playslist = [oPato, sixDays, sunflower];
+let index = 0;
+
 let isPlaying = false;
 
 function playSong(){
@@ -27,4 +50,38 @@ function playPauseDecider(){
     }
 }
 
+function loadSong(){
+    cover.src = `img/${playslist[index].file}.jpg`;
+    song.src = `songs/${playslist[index].file}.mp3`;
+    songName.innerHTML = playslist[index].songName;
+    bandName.innerHTML = playslist[index].artist;
+}
+
+function previousSong(){
+    if (index === 0){
+        index = playslist.length - 1;
+    }else{
+        index -= 1
+    }
+    loadSong();
+    playSong();
+    
+}
+
+function nextSong(){
+    if( index === playslist.length - 1){
+        index = 0;
+    }else{
+        index += 1;
+    }
+    loadSong();
+    playSong();
+    
+}
+
+
+loadSong();
+
 play.addEventListener("click", playPauseDecider);
+previous.addEventListener("click", previousSong);
+next.addEventListener("click", nextSong)
