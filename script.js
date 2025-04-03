@@ -5,6 +5,7 @@ const song = document.getElementById("audio");
 const play = document.getElementById("play")
 const previous = document.getElementById("previous");
 const next = document.getElementById("next");
+const currentProgress = document.getElementById("current-progress")
 
 const oPato = {
     songName : "O Pato",
@@ -79,9 +80,15 @@ function nextSong(){
     
 }
 
+function updateProgressBar(){
+    const barWidth = (song.currentTime / song.duration) * 100;
+    currentProgress.style.setProperty("--progress", `${barWidth}%`);
+}
+
 
 loadSong();
 
 play.addEventListener("click", playPauseDecider);
 previous.addEventListener("click", previousSong);
 next.addEventListener("click", nextSong)
+song.addEventListener("timeupdate", updateProgressBar)
