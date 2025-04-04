@@ -5,7 +5,8 @@ const song = document.getElementById("audio");
 const play = document.getElementById("play")
 const previous = document.getElementById("previous");
 const next = document.getElementById("next");
-const currentProgress = document.getElementById("current-progress")
+const currentProgress = document.getElementById("current-progress");
+const progressConatiner = document.getElementById("progress-container");
 
 const oPato = {
     songName : "O Pato",
@@ -34,6 +35,7 @@ function playSong(){
     play.querySelector(".bi").classList.add("bi-pause-circle-fill");
     song.play();
     isPlaying = true;
+    
 }
 
 function pauseSong(){
@@ -85,10 +87,18 @@ function updateProgressBar(){
     currentProgress.style.setProperty("--progress", `${barWidth}%`);
 }
 
+function jumpTo(event){
+    const width = progressConatiner.clientWidth;
+    const clickPosition = event.offsetX;
+    const jumpToTime = (clickPosition / width) * song.duration;
+    song.currentTime = jumpToTime;
+}
+
 
 loadSong();
 
 play.addEventListener("click", playPauseDecider);
 previous.addEventListener("click", previousSong);
-next.addEventListener("click", nextSong)
-song.addEventListener("timeupdate", updateProgressBar)
+next.addEventListener("click", nextSong);
+song.addEventListener("timeupdate", updateProgressBar);
+progressConatiner.addEventListener("click", jumpTo)
