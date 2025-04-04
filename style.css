@@ -33,6 +33,7 @@ button{
 
 .button{
     font-size: 1.5em;
+    cursor: pointer;
 }
 
 .button-navigate{
@@ -65,6 +66,7 @@ button{
 
 #progress-container{
     padding-bottom: 2em;
+    cursor: pointer;
 }
 
 #progress-bar{
@@ -80,4 +82,8 @@ button{
     height: inherit;
     width: var(--progress);
     border-radius: inherit;
+}
+
+.button-activate{
+    color: rgb(12, 246, 12);
 }
