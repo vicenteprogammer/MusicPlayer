@@ -8,6 +8,7 @@ const next = document.getElementById("next");
 const currentProgress = document.getElementById("current-progress");
 const progressContainer = document.getElementById("progress-container");
 const shuffleButton = document.getElementById("shuffle");
+const repeatButton = document.getElementById("repeat");
 
 const oPato = {
     songName : "O Pato",
@@ -32,6 +33,7 @@ let index = 0;
 
 let isPlaying = false;
 let isShuffle = false;
+let repeatOn = false;
 
 function playSong(){
     play.querySelector(".bi").classList.remove("bi-play-circle-fill");
@@ -122,6 +124,24 @@ function shuffleButtonClicked(){
     }
 }
 
+function repeatSong(){
+    if(repeatOn === false){
+        repeatOn = true;
+        repeatButton.classList.add("button-activate");
+    }else{
+        repeatOn = false;
+        repeatButton.classList.remove("button-activate");
+    }
+}
+
+function nextOrRepeat(){
+    if(repeatOn === false){
+        nextSong();
+    }else{
+        playSong();
+    }
+}
+
 
 loadSong();
 
@@ -129,5 +149,7 @@ play.addEventListener("click", playPauseDecider);
 previous.addEventListener("click", previousSong);
 next.addEventListener("click", nextSong);
 song.addEventListener("timeupdate", updateProgressBar);
+song.addEventListener("ended", nextOrRepeat)
 progressContainer.addEventListener("click", jumpTo);
 shuffleButton.addEventListener("click",shuffleButtonClicked);
+repeatButton.addEventListener("click", repeatSong)
