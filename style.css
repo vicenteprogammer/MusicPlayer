@@ -65,8 +65,8 @@ button{
 }
 
 #progress-container{
-    padding-bottom: 2em;
     cursor: pointer;
+    margin-bottom: 1.5em;
 }
 
 #progress-bar{
@@ -86,4 +86,12 @@ button{
 
 .button-activate{
     color: rgb(12, 246, 12);
+}
+
+#time-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.4em;
+    font-size: smaller;
 }
