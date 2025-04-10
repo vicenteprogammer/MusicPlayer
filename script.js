@@ -11,24 +11,28 @@ const shuffleButton = document.getElementById("shuffle");
 const repeatButton = document.getElementById("repeat");
 const totalTime = document.getElementById("total-time");
 const songTime = document.getElementById("song-time");
+const likeButton = document.getElementById("like");
 const oPato = {
     songName : "O Pato",
     artist: "João Gilberto",
-    file: "o_pato"
+    file: "o_pato",
+    liked : false
 };
 
 const sixDays = {
     songName : "Six Days",
     artist : "DJ Shadow",
-    file: "six_days"
+    file: "six_days",
+    liked : false
 };
 
 const sunflower = {
     songName : "Sunflower",
     artist : "Post Malone",
-    file : "sunflower"
+    file : "sunflower",
+    liked : false
 };
-const playlist = [oPato, sixDays, sunflower];
+const playlist = JSON.parse(localStorage.getItem("playlist")) ?? [oPato, sixDays, sunflower]
 let sortedPlaylist = [...playlist];
 let index = 0;
 
@@ -64,6 +68,7 @@ function loadSong(){
     song.src = `songs/${sortedPlaylist[index].file}.mp3`;
     songName.innerHTML = sortedPlaylist[index].songName;
     bandName.innerHTML = sortedPlaylist[index].artist;
+    likeButtonRender();
 }
 
 function previousSong(){
@@ -158,6 +163,28 @@ function updateTotalTime(){
     totalTime.innerHTML = toHHMMSS(song.duration);
 }
 
+function likeButtonRender(){
+    if(sortedPlaylist[index].liked === true){
+        likeButton.querySelector(".bi").classList.remove("bi-heart");
+        likeButton.querySelector(".bi").classList.add("bi-heart-fill");
+        likeButton.classList.add("button-activate")
+    }else{
+        likeButton.querySelector(".bi").classList.remove("bi-heart-fill");
+        likeButton.querySelector(".bi").classList.add("bi-heart")
+        likeButton.classList.remove("button-activate")
+    }
+}
+
+function likeButtonClicked(){
+    if(sortedPlaylist[index].liked === false){
+        sortedPlaylist[index].liked = true;
+    }else{
+        sortedPlaylist[index] = false;
+    }
+    likeButtonRender();
+    localStorage.setItem("playlist", JSON.stringify(playlist))
+}
+
 
 loadSong();
 
@@ -170,3 +197,4 @@ song.addEventListener("loadedmetadata", updateTotalTime);
 progressContainer.addEventListener("click", jumpTo);
 shuffleButton.addEventListener("click",shuffleButtonClicked);
 repeatButton.addEventListener("click", repeatSong)
+likeButton.addEventListener("click", likeButtonClicked)
